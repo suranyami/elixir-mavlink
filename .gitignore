@@ -27,3 +27,5 @@ MAVLink.ex
 
 # Intellij
 .idea
+
+.DS_Store
