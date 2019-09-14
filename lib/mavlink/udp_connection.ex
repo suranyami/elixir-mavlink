@@ -95,9 +95,8 @@ defmodule MAVLink.UDPConnection do
     }
   end
 
-  def handle_info({:udp, _sock, _addr, _port, raw}, state) do
+  def handle_info({:udp, _sock, _addr, _port, _raw}, state) do
     # Ignore UDP packets we don't recognise
-    # Logger.info "Did not recognise #{inspect(raw)}"
     {:noreply, state}
   end
 
