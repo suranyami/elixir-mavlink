@@ -61,20 +61,19 @@ defmodule MAVLink.UDPConnection do
           source_addr,
           source_port,
           # MAVLink version 2
-          raw =
-            <<
-              0xFD,
-              payload_length::unsigned-integer-size(8),
-              # TODO Rejecting all incompatible flags for now
-              0::unsigned-integer-size(8),
-              _compatible_flags::unsigned-integer-size(8),
-              sequence_number::unsigned-integer-size(8),
-              source_system_id::unsigned-integer-size(8),
-              source_component_id::unsigned-integer-size(8),
-              message_id::little-unsigned-integer-size(24),
-              payload::binary-size(payload_length),
-              checksum::little-unsigned-integer-size(16)
-            >>
+          raw = <<
+            0xFD,
+            payload_length::unsigned-integer-size(8),
+            # TODO Rejecting all incompatible flags for now
+            0::unsigned-integer-size(8),
+            _compatible_flags::unsigned-integer-size(8),
+            sequence_number::unsigned-integer-size(8),
+            source_system_id::unsigned-integer-size(8),
+            source_component_id::unsigned-integer-size(8),
+            message_id::little-unsigned-integer-size(24),
+            payload::binary-size(payload_length),
+            checksum::little-unsigned-integer-size(16)
+          >>
         },
         state
       ) do
