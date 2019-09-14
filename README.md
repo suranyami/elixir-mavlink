@@ -117,7 +117,9 @@ Which can also be added to `~/.mavinit.scr` to run every time `mavproxy.py` runs
 In another directory (like `..`):
 
 ```bash
+cd ..
 git clone  git@github.com:mavlink/mavlink.git
+cd elixir-mavlink
 ```
 
 The message definitions live in:
@@ -133,4 +135,24 @@ mkdir message_definitions
 cp ../mavlink/message_definitions/v1.0/\* message_definitions
 
 mix mavlink message_definitions/ardupilotmega.xml output/apm.ex APM
+```
+
+## Example usage
+
+```elixir
+defmodule TestLog do
+  def start do
+    # MAVLink.Router.subscribe(message: APM.Message.Attitude)
+    MAVLink.Router.subscribe(message: APM.Message.SysStatus)
+    loop()
+  end
+
+  def loop do
+    receive do
+      x ->
+        IO.inspect(x)
+        loop()
+    end
+  end
+end
 ```
